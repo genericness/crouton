@@ -67,7 +67,7 @@ copyclip() {
         else
             # Do not override content if it "looks" the same
             # (we might have rich text or other content in the clipboard)
-            cliptmp="`mktemp "croutonclip.XXX" --tmpdir=/tmp`"
+            cliptmp="`mktemp "croutonclip.XXX" --tmpdir=/usr/local/crouton/tmp`"
             trap "rm -f '$cliptmp'" 0
             cat > $cliptmp
 

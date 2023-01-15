@@ -393,7 +393,7 @@ for NAME in "$@"; do
             SPLIT="${SPLIT:-4095}"
         fi
         if [ -n "$SPLIT" ]; then
-            tardest="`mktemp -d --tmpdir=/tmp 'crouton-backup.XXX'`"
+            tardest="`mktemp -d --tmpdir=/usr/local/crouton/tmp 'crouton-backup.XXX'`"
             addtrap "rm -rf '$tardest'"
             tardest="$tardest/pipe.${dest##*/}"
             mkfifo -m 600 "$tardest"
@@ -470,7 +470,7 @@ for NAME in "$@"; do
             done
             # Don't let tar get tripped up by cat's incomplete writes
             tarparam="$tarparam -B"
-            tarsrc="`mktemp -d --tmpdir=/tmp 'crouton-restore.XXX'`"
+            tarsrc="`mktemp -d --tmpdir=/usr/local/crouton/tmp 'crouton-restore.XXX'`"
             addtrap "rm -rf '$tarsrc'"
             tarsrc="$tarsrc/pipe"
             mkfifo -m 600 "$tarsrc"

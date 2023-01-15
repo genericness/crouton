@@ -77,7 +77,7 @@ install_dummy_dist() {
             shift
         done
     fi
-    local tmp="`mktemp -d crouton.XXXXXX --tmpdir=/tmp`"
+    local tmp="`mktemp -d crouton.XXXXXX --tmpdir=/usr/local/crouton/tmp`"
     addtrap "rm -rf '$tmp'"
     cat > "$tmp/control" <<EOF
 Package: $pkgname
@@ -200,7 +200,7 @@ install_mirror_package() {
         fi
         pkgurl="$url$xvers"
         # Download the package to a temporary file
-        local deb="`mktemp crouton.XXXXXX --tmpdir=/tmp`"
+        local deb="`mktemp crouton.XXXXXX --tmpdir=/usr/local/crouton/tmp`"
         addtrap "rm -f '$deb'"
         wget "$pkgurl" -O"$deb"
         debfiles="$debfiles $deb"

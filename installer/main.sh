@@ -387,7 +387,7 @@ if [ -z "$RESTOREBIN" ]; then
     CHROOT="$CHROOTS/${NAME:="${RELEASE:-"$DEFAULTRELEASE"}"}"
     CHROOTSRC="$CHROOT"
 fi
-TARGETDEDUPFILE="`mktemp --tmpdir=/tmp "$APPLICATION-dedup.XXX"`"
+TARGETDEDUPFILE="`mktemp --tmpdir=/usr/local/crouton/tmp "$APPLICATION-dedup.XXX"`"
 addtrap "rm -f '$TARGETDEDUPFILE'"
 
 # Confirm we have write access to the directory before starting.
@@ -554,7 +554,7 @@ fi
 # temporary directory to avoid changing its state permanently if it is
 # successful.
 vboot_is_safe() {
-    local tmp="`mktemp -d --tmpdir=/tmp 'crouton-rwtest.XXX'`"
+    local tmp="`mktemp -d --tmpdir=/usr/local/crouton/tmp 'crouton-rwtest.XXX'`"
     local unmount="umount -l '$tmp' 2>/dev/null; rmdir '$tmp'"
     addtrap "$unmount"
     mount --bind / "$tmp" >/dev/null
@@ -621,7 +621,7 @@ fi
 # Download the bootstrap data if appropriate
 if [ -z "$UPDATE$RESTOREBIN" ] && [ -n "$DOWNLOADONLY" -o -z "$TARBALL" ]; then
     # Create the temporary directory and delete it upon exit
-    tmp="`mktemp -d --tmpdir=/tmp "$APPLICATION.XXX"`"
+    tmp="`mktemp -d --tmpdir=/usr/local/crouton/tmp "$APPLICATION.XXX"`"
     subdir="$RELEASE-$ARCH"
     addtrap "rm -rf --one-file-system '$tmp'"
 
@@ -735,7 +735,7 @@ echo -n '' > "$TARGETDEDUPFILE"
 # Check if a target has defined PROVIDES, if we are not restoring host-bin.
 if [ ! -n "$RESTOREHOSTBIN" ]; then
     # Create temporary file to list PROVIDES=TARGET.
-    PROVIDESFILE="`mktemp --tmpdir=/tmp "$APPLICATION-provides.XXX"`"
+    PROVIDESFILE="`mktemp --tmpdir=/usr/local/crouton/tmp "$APPLICATION-provides.XXX"`"
     addtrap "rm -f '$PROVIDESFILE'"
     t="${TARGETS%,},"
     while [ -n "$t" ]; do

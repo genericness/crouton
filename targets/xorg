@@ -109,7 +109,7 @@ if [ -n "$pinmesa" ]; then
     # (the libraries are actually provided by libegl1-mesa-drivers in precise)
     install --minimal --asdeps equivs
 
-    DEBTMP="`mktemp -d crouton.XXXXXX --tmpdir=/tmp`"
+    DEBTMP="`mktemp -d crouton.XXXXXX --tmpdir=/usr/local/crouton/tmp`"
     addtrap "rm -rf --one-file-system '$DEBTMP'"
 
     ( cd "$DEBTMP"; equivs-build - ) <<END

@@ -216,7 +216,7 @@ log() {
 }
 
 # Temporary files
-TMPROOT="`mktemp -d --tmpdir='/tmp' 'crouton-autotest.XXX'`"
+TMPROOT="`mktemp -d --tmpdir='/usr/local/crouton/tmp' 'crouton-autotest.XXX'`"
 addtrap "rm -rf --one-file-system '$TMPROOT'"
 LASTFILE="$TMPROOT/last"
 echo "2 `date '+%s'`" > "$LASTFILE"

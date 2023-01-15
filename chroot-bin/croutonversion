@@ -100,7 +100,7 @@ echo "crouton: version $VERSION" 1>&2
 latest=''
 tmpdir=''
 if [ -n "$UPDATES$DOWNLOAD" ]; then
-    tmpdir="`mktemp -d --tmpdir=/tmp crouton.XXX`"
+    tmpdir="`mktemp -d --tmpdir=/usr/local/crouton/tmp crouton.XXX`"
     trap "rm -rf --one-file-system '$tmpdir'" INT HUP 0
     echo "Retrieving latest version of $INSTALLER" 1>&2
     if ! wget "$CROUTONURL" -O "$tmpdir/$INSTALLER" 2>"$tmpdir/log"; then
